@@ -3,3 +3,7 @@ Output/
 ckpts/SETR_MLA/*
 !ckpts/SETR_MLA/.gitkeep
 ckpts/*
+
+single_inference/*
+Output/*
+dataset/*

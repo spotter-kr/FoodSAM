@@ -44,7 +44,7 @@
 43	stew
 44	teriyaki grilled fish
 45	fried fish
-46	grilled salmon
+46	grilled 
 47	salmon meuniere 
 48	sashimi
 49	grilled pacific saury 
