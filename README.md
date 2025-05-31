@@ -8,8 +8,9 @@ Re-implementation of [FoodSAM (arXiv:2308.05938)](https://arxiv.org/abs/2308.059
 
 We recommend using Python 3.7 and PyTorch 1.8.1 + CUDA 11.1. Other versions may work but are not tested.
 ### 0. Download dataset (FoodSeg103)
-Please download the required checkpoints from the following Google Drive folder and place them into the `ckpts/` directory:  
-[Download Checkpoints](https://drive.google.com/file/d/1dqL2x_Zdi3J-dp-EV_rFJ_zVUVveAVgl/view?usp=drive_link)
+Download the FoodSeg103 dataset and extract its contents.
+After unzipping, place the dataset inside the `dataset/` directory.
+[Download Dataset](https://drive.google.com/file/d/1dqL2x_Zdi3J-dp-EV_rFJ_zVUVveAVgl/view?usp=drive_link)
 
 ### 1. Create conda environment
 ```bash
