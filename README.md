@@ -82,7 +82,7 @@ FoodSAM
   To evaluate segmentation performance on the FoodSeg103 test set:
 
   ```bash
-  bash scripts/evaluation.sh
+  bash scripts/evaluation_ap.sh
   ```
 
 ### 2. Inference using Jupyter Notebook
