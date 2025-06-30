@@ -30,7 +30,7 @@ pip install mmcv-full==1.3.0 -f https://download.openmmlab.com/mmcv/dist/cu110/t
 pip install git+https://github.com/facebookresearch/segment-anything.git@6fdee8f
 
 # Others
-pip install -r requirement.txt
+pip install --no-deps -r requirement.txt
 ```
 
 ### 3. Download checkpoints
@@ -106,9 +106,11 @@ FoodSAM
 
 | Metric       | Value  |
 |--------------|--------|
-| mIoU         | 46.48  |
+| mIoU         | 46.43  |
 | Mean Acc     | 58.28  |
 | Overall Acc  | 84.11  |
+| mAP (VOC)    | 81.15  |
+| mAP (COCO)   | 89.16  |
 
 ---
 
