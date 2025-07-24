@@ -1,5 +1,5 @@
 __pycache__/
-Output/
+Output*/
 ckpts/SETR_MLA/*
 !ckpts/SETR_MLA/.gitkeep
 ckpts/*
@@ -7,3 +7,5 @@ ckpts/*
 single_inference/*
 Output/*
 dataset/*
+
+.ipynb_checkpoints/
