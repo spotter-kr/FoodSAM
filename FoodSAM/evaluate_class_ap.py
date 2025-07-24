@@ -101,8 +101,16 @@ def evaluate_ap_merged(data_root, gt_root, category_txt_path):
         voc_aps.append(voc_ap(rec, prec))
         coco_aps.append(coco_ap(rec, prec))
 
-    print(f"\n✅ VOC mAP@0.50: {np.mean(voc_aps):.4f}")
-    print(f"✅ COCO mAP@0.50: {np.mean(coco_aps):.4f}")
+    if not voc_aps:
+        print("\nNo valid predictions found to evaluate. Both VOC and COCO mAP are 0.")
+        voc_map = 0.0
+        coco_map = 0.0
+    else:
+        voc_map = np.mean(voc_aps)
+        coco_map = np.mean(coco_aps)
+
+    print(f"\n✅ VOC mAP@0.50: {voc_map:.2%}")
+    print(f"✅ COCO mAP@0.50: {coco_map:.2%}")
 
 
 import argparse
