@@ -114,6 +114,13 @@ parser.add_argument(
     action='store_true', help='evaluate the semantic results'
 )
 
+parser.add_argument(
+    "--num_images",
+    type=int,
+    default=None,
+    help="Number of images to process. If not specified, all images are processed."
+)
+
 amg_settings = parser.add_argument_group("AMG Settings")
 amg_settings.add_argument(
     "--points-per-side",
@@ -284,6 +291,9 @@ def main(args: argparse.Namespace) -> None:
         ]
         targets = [os.path.join(img_folder, f) for f in targets]
 
+    if args.num_images is not None:
+        targets = targets[:args.num_images]
+
     for t in targets:
         logger.info(f"Processing '{t}'...")
         image = cv2.imread(t)
@@ -302,7 +312,7 @@ def main(args: argparse.Namespace) -> None:
 
     
     logger.info("running semantic seg model!")
-    semantic_predict(args.data_root, args.img_dir, args.ann_dir, args.semantic_config, args.options, args.aug_test, args.semantic_checkpoint, args.eval_options, args.output, args.color_list_path, args.img_path)
+    semantic_predict(args.data_root, args.img_dir, args.ann_dir, args.semantic_config, args.options, args.aug_test, args.semantic_checkpoint, args.eval_options, args.output, args.color_list_path, args.img_path, target_images=targets if not args.img_path else None)
     logger.info("semantic predict done!\n")
     
 

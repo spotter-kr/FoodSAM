@@ -105,7 +105,7 @@ def single_gpu_test(model,
     return results
 
 def semantic_predict(data_root, img_dir, ann_dir, config, options, aug_test, checkpoint,
-                     eval_options, output, color_list_path, img_path=None):
+                     eval_options, output, color_list_path, img_path=None, target_images=None):
     cfg = mmcv.Config.fromfile(config)
     if options is not None:
         cfg.merge_from_dict(options)
@@ -134,6 +134,9 @@ def semantic_predict(data_root, img_dir, ann_dir, config, options, aug_test, che
         cfg.data.test.img_dir = img_dir
         cfg.data.test.ann_dir = ann_dir
         dataset = build_dataset(cfg.data.test)
+        if target_images:
+            dataset.img_infos = [info for info in dataset.img_infos if os.path.join(dataset.img_dir, info['filename']) in target_images]
+        
         data_loader = build_dataloader(
             dataset,
             samples_per_gpu=1,
