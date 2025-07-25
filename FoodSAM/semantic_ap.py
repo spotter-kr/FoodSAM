@@ -286,13 +286,25 @@ def main(args: argparse.Namespace) -> None:
         targets = [args.img_path]
     else:
         img_folder = os.path.join(args.data_root, args.img_dir)
-        targets = [
+        original_targets = [
             f for f in os.listdir(img_folder) if not os.path.isdir(os.path.join(img_folder, f))
         ]
-        targets = [os.path.join(img_folder, f) for f in targets]
+        original_targets = [os.path.join(img_folder, f) for f in original_targets]
 
-    if args.num_images is not None:
-        targets = targets[:args.num_images]
+        if args.num_images is not None:
+            num_original_images = len(original_targets)
+            if args.num_images <= num_original_images:
+                targets = original_targets[:args.num_images]
+            else:
+                num_repetitions = args.num_images // num_original_images
+                remaining_images = args.num_images % num_original_images
+                
+                targets = []
+                for _ in range(num_repetitions):
+                    targets.extend(original_targets)
+                targets.extend(original_targets[:remaining_images])
+        else:
+            targets = original_targets
 
     for t in targets:
         logger.info(f"Processing '{t}'...")
@@ -329,7 +341,7 @@ def main(args: argparse.Namespace) -> None:
         evaluate(args.output, ann_folder, args.num_class)
 
 
-    logger.info("The results saved in {}!\n".format(args.output))
+    logger.info("The results saved in {}\n".format(args.output))
 
 
 if __name__ == "__main__":

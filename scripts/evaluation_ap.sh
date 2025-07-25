@@ -12,7 +12,7 @@ rm -rf "$OUTPUT_ROOT"
 mkdir -p "$OUTPUT_ROOT"
 
 # 1. Semantic segmentation 실행
-python FoodSAM/semantic_ap.py --data_root "$DATA_ROOT" --output "$OUTPUT_ROOT" --eval "$@"
+python FoodSAM/semantic_ap.py --data_root "$DATA_ROOT" --output "$OUTPUT_ROOT" --eval --num_images "$NUM_IMAGES" "$@"
 
 # 2. 클래스 단위 AP 평가 (VOC, COCO, All Point)
 python FoodSAM/evaluate_class_ap.py --data_root "$OUTPUT_ROOT" --gt_root "$GT_ROOT" --category_txt "$CATEGORY_TXT"
